@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+alembic
+strawberry-graphql[fastapi]
+passlib
+bcrypt
+python-jose
+python-multipart
+psycopg2 # python3.9 venvではエラーになる

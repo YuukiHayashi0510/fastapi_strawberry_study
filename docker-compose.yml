@@ -1,0 +1,31 @@
+services:
+  api:
+    container_name: api
+    build: ./docker
+    env_file:
+      - .env
+    restart: always
+    tty: true
+    ports:
+      - 8000:8000
+    volumes:
+      - ./api:/usr/src/api
+    environment:
+      - DATABASE_URI=postgresql://postgres:postgres@db/postgres_db
+
+  postgres:
+    image: postgres:alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres_db
+    hostname: postgres
+    restart: always
+
+volumes:
+  postgres_data:
